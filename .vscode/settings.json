@@ -1,5 +1,10 @@
 {
     "yaml.schemas": {
-        "kubernetes": "*.yaml"
+        "kubernetes": "*.yaml",
+        "https://github.com/bashfulrobot/linkr/blob/9d4ec22a22f9ed0a411b9c0b1de4e12c2adf790d/json-schema/linkr.json": "config.yaml",
+        "https://json.schemastore.org/kustomization.json": [
+            "file:///home/dustin/dev/infra/clusters/darkstar/flux-system/kustomization.yaml",
+            "file:///home/dustin/dev/infra/clusters/darkstar/sysdig-agent/kustomization.yaml"
+        ]
     }
 }
