@@ -14,8 +14,7 @@
 
 ### How
 
-- Using this guide to setp [SOPS](https://fluxcd.io/flux/guides/mozilla-sops/)
-- Then referncing the values as per this [doc](https://fluxcd.io/flux/guides/helmreleases/#refer-to-values-in-secret-generated-with-kustomize-and-sops)
+- Using this guide to setp [sealed secrets](https://fluxcd.io/flux/guides/sealed-secrets/)
 
 ## Sysdig Agent
 
