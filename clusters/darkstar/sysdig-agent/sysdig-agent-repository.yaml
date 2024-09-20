@@ -4,5 +4,5 @@ metadata:
   name: flux-sysdig-helm-repo
   namespace: sysdig-agent
 spec:
-  interval: 1m
+  interval: 1h0m0s
   url: https://charts.sysdig.com
