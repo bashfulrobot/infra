@@ -5,6 +5,7 @@ resources:
 - sysdig-agent-namespace.yaml
 - sysdig-access-key-sealed.yaml
 - sysdig-agent-repository.yaml
+- sysdig-agent-release.yaml
 configMapGenerator:
   - name: sysdig-agent-values
     files:
