@@ -24,4 +24,4 @@ spec:
       retries: 3
   valuesFrom:
     - kind: ConfigMap
-      name: sysdig-agent-values-296ff4825k
+      name: sysdig-agent-values
