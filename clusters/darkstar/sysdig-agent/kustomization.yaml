@@ -4,8 +4,8 @@ kind: Kustomization
 resources:
 - sysdig-agent-namespace.yaml
 - sysdig-access-key-sealed.yaml
-# - sysdig-agent-repository.yaml
-# configMapGenerator:
-#   - name: sysdig-agent-values
-#     files:
-#       - values.yaml=values.yaml
+- sysdig-agent-repository.yaml
+configMapGenerator:
+  - name: sysdig-agent-values
+    files:
+      - values.yaml=values.yaml
