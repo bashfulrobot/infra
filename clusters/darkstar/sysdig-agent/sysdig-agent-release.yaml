@@ -4,7 +4,8 @@ metadata:
   name: flux-sysdig-helm-release
   namespace: sysdig-agent
 spec:
-  interval: 1m
+  interval: 10m
+  timeout: 5m
   chart:
     spec:
       chart: sysdig-deply
@@ -13,7 +14,14 @@ spec:
         kind: HelmRepository
         name: flux-sysdig-helm-repo
         namespace: sysdig-agent
-      interval: 1m
+      interval: 5m
+  releaseName: sysdig
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
   valuesFrom:
     - kind: ConfigMap
-      name: sysdig-agent-values
+      name: sysdig-agent-values-296ff4825k
