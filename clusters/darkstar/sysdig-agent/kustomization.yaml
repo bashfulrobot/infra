@@ -1,6 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
 - sysdig-agent-namespace.yaml
 - sysdig-access-key-sealed.yaml
@@ -8,5 +7,6 @@ resources:
 - sysdig-agent-release.yaml
 configMapGenerator:
   - name: sysdig-agent-values
+    namespace: sysdig-agent
     files:
       - values.yaml=agent-values.yaml
