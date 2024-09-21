@@ -2,14 +2,16 @@
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
-  name: sysdig-access-key
-  namespace: sysdig-agent
   annotations:
     sealedsecrets.bitnami.com/namespace-wide: "true"
+  name: sysdig-access-key
+  namespace: sysdig-agent
 spec:
   encryptedData:
-    access-key: AgCms6TBcXC8O682uF/SIVlAWyBofPo55a6KfY3TWEj0BgmWi/sgZPekI5Jg1leyWmjWm1ZB3KKd5aRFQybgKdeDOOwUMC6b2r4KgmUzFWs+tuEWdyb4OCiZ/dFbXX+56xNuSnSkr0/9RWJjVqGI5BMa7l75AvYwecWGczgCRkoN3WWEfPNcl55IYCfHz3rrI376QrtWVQiFFpl4o56CK1n3vt6uH9OwnNIuxW1t19qzpmuk/uG+sFNAisMZYjagmk9pzH4e40/VcQgpSDke3+hmVI5TmCURWMLOOS4CSLPopUSw/10MnztKYut2PDYqa2TrUdwpT/hWaqzG16EnsEDFxHD2qqK+x+Tn1l4VXoO4xB3Rqa/gU7OYFiejJUYelvVEq5yrYaWgH6vwxPbl2kR2hkgxTCmyjqLbbT+RKtEswGOul25btszrjoVrCD6ZJqQb3aYJ3pZxUBoqfPAqGhRDyZBbgxGsJR4VrQsqG4r0ktvs1/MlghGDPqL66qCt6vCSOY1EBRPQlIZTwLCtFVrlu6TT2yw/mme5mwifBqO+avn1YKLFkfxvMtKr2a/Hna6N8gck8kKOQL53usVL9px1Ly5l48Fzu856VjgdGhjC06Fkn1LmUbxHrUboTEs5qtWMZqHVmv1t0OX+9qYgj1UiFWGk4DQMsxNBU2kixZodYg3YaXvgljYvxVAsEy3UetaJznSAhXvLq2H+JBhrb7PVb/bmPHjfwFjJ9od+xxR6QSksUoA=
+    access-key: AgAnVWY9y8HkWUJm4TQV5WSPjNjk8NCz4i0CXD+NkDblIuEB5Kxn3aOBpT2/oBdMFzHVhyFpWK282x9I73XT45nyfaHgM6i7EYrN459wiBBT4gsR0HKh/wc4CkAJlxTsSf0/Gd5xFSnRGHCxTGPbGrqF040KRaRpQ5iIoWgQKFxrYBxqTXeGuPO4V2Y0vZSr5ZTl6ZEgBgPGjFOPO7+Ojqn6UMOHCG8jr08jsaOJOF346p+HH8EX2TClDyLhxljL7Hj50Z9CkDfWukdnLqjVuckEaimSXPKvNGDfD2pnOKzLol70GAl43ttlGRUxl1oQv0Bm1pumpfPmHDsaAWQLAjyKQu3owyX8+xNtsjU32bTT+PybAMNoYgzbSZ/uyVr3488UinQe1mcRIy+r6o56YkYgBi6tvM5pYaVbS0Pfryr4sXH/5oleoCDV47fYRINSQctVXu/hTsbDAQttd+McmVYXsm95dpWQ3btlaNaKkc22ZDCqt5tGVez4b/KqflU/4ArZ09tel+1KvZBMeXVWxVAe8QAVQUnrf4jcETnHeZhKQKCCaPEOCgmNY6zGFO1gwkLL6Fqym1N3Sya2Wk2iGxcmfKrnC7oj3zNNUoK03IgJLbqAU6+wtlipKGXMWKAvXATGl/Afw6U8FSPyyyVnC/p8GV3/t22E0u67JJI/w75KoWGtH8Uec8GafXnZ2F1xqgG70O2QvA+uqSjgJq9tDRMAcn4qX85/FfWPBJ5mNPiGF6gvLkw=
   template:
     metadata:
+      annotations:
+        sealedsecrets.bitnami.com/namespace-wide: "true"
       name: sysdig-access-key
       namespace: sysdig-agent
