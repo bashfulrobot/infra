@@ -4,7 +4,7 @@ metadata:
   name: flux-sysdig-helm-release
   namespace: sysdig-agent
 spec:
-  interval: 10m
+  interval: 1m
   chart:
     spec:
       chart: sysdig-deply
@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: flux-sysdig-helm-repo
         namespace: sysdig-agent
-      interval: 10m
+      interval: 1m
   valuesFrom:
     - kind: ConfigMap
       name: sysdig-agent-values
