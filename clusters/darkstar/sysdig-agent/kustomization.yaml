@@ -9,4 +9,4 @@ resources:
 configMapGenerator:
   - name: sysdig-agent-values
     files:
-      - values.yaml=values.yaml
+      - values.yaml=agent-values.yaml
