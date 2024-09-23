@@ -1,8 +1,13 @@
 # Cluster Bootstrap
 
+## How to create the PAT
+
+- [Flux Docs on Bootstrapping](https://fluxcd.io/flux/installation/bootstrap/github/#github-organization)
+- [Clarification Issue](https://github.com/fluxcd/flux2/issues/4412)
+
 - set kube context
-- `flux bootstrap git --url=ssh://git@github.com/bashfulrobot/infra --branch=main --private-key-file=/home/dustin/.ssh/id_ed25519 --password
-=xxxxxxxxxxx --path=./clusters/xxxxxxxx`
+- `export GITHUB_TOKEN=<gh-token>`
+- `flux bootstrap github --token-auth --owner=bashfulrobot --repository=infra --branch=main --path=clusters/darkstar --personal`
 
 ## Secrets
 
