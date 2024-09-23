@@ -29,4 +29,4 @@ export-sealed-secret-pubkey:
     @kubeseal --fetch-cert --controller-name=sealed-secrets-controller --controller-namespace=sealed-secrets > pub-sealed-secrets.pem
 # Bootstrap a flux cluster - Args: CLUSTER_NAME SSH_KEY_PW
 bootstrap-flux-cluster CLUSTER_NAME SSH_KEY_PW:
-    @flux bootstrap git --url=ssh://git@github.com/bashfulrobot/infra --branch=main --private-key-file=/home/dustin/.ssh/id_ed25519 --password={{SSH_KEY_PW}} --path=./clusters/{{CLUSTER_NAME}}
+    @flux bootstrap git --url=ssh://git@github.com/bashfulrobot/infra --branch=main --private-key-file=/home/dustin/.ssh/flux_id_ed25519 --password={{SSH_KEY_PW}} --path=./clusters/{{CLUSTER_NAME}}
