@@ -1,0 +1,63 @@
+## Create a values.yaml file with the following:
+global:
+  clusterConfig:
+    name: darkstar
+  sysdig:
+    region: us2
+    # accessKey: xxxxxx
+    accessKeySecret: sysdig-access-key
+  kspm:
+    deploy: true
+agent:
+  # image:
+  #   tag: 13.2.0
+  ebpf:
+    enabled: true
+    kind: universal_ebpf
+nodeAnalyzer:
+  enabled: true
+  secure:
+    vulnerabilityManagement:
+      newEngineOnly: true
+  nodeAnalyzer:
+    benchmarkRunner:
+      deploy: false
+    hostAnalyzer:
+      deploy: false
+    runtimeScanner:
+      deploy: false
+    hostScanner:
+      deploy: true
+kspmCollector:
+  enabled: false
+admissionController:
+  enabled: false
+clusterShield:
+  enabled: true
+  cluster_shield:
+    # some options: warn, err, debug
+    log_level: err
+    # Only needed on a large cluster -If you need more resources
+    # the default requests are ~500Mb + 0.2 CPU or something
+    # So we basically change only limits
+    # resources:
+    #   limits:
+    #     cpu: 2000m
+    #     memory: 2048Mi
+    #   requests:
+    #     cpu: 500m
+    #     memory: 512Mi
+    features:
+      admission_control:
+        enabled: true
+      audit:
+        enabled: true
+      container_vulnerability_management:
+        enabled: true
+      posture:
+        enabled: true
+  # replicaCount: 1
+## Deploy the Chart
+
+# helm repo add sysdig https://charts.sysdig.com
+# helm install -n sysdig-agent sysdig sysdig/sysdig-deploy -f values.sysdig.yaml
