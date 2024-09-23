@@ -24,6 +24,9 @@ flux-events:
 # Create a sealed secret - Args: NAME NAMESPACE SECRET SECRET-VALUE
 create-sealed-secret NAME NAMESPACE SECRET SECRET-VALUE:
     kubectl create secret generic {{NAME}} --from-literal={{SECRET}}={{SECRET-VALUE}} -n {{NAMESPACE}} -o yaml --dry-run=client | kubeseal --controller-namespace=sealed-secrets -n {{NAMESPACE}} --scope namespace-wide -o yaml > {{NAME}}-sealed.yaml
+# export the sealed secret public key
+export-sealed-secret-pubkey:
+    @kubeseal --fetch-cert --controller-name=sealed-secrets-controller --controller-namespace=sealed-secrets > pub-sealed-secrets.pem
 # Bootstrap a flux cluster - Args: CLUSTER_NAME SSH_KEY_PW
 bootstrap-flux-cluster CLUSTER_NAME SSH_KEY_PW:
     @flux bootstrap git --url=ssh://git@github.com/bashfulrobot/infra --branch=main --private-key-file=/home/dustin/.ssh/id_ed25519 --password={{SSH_KEY_PW}} --path=./clusters/{{CLUSTER_NAME}}
