@@ -1,0 +1,19 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/namespace-wide: "true"
+  creationTimestamp: null
+  name: sysdig-access-key
+  namespace: sysdig-agent
+spec:
+  encryptedData:
+    access-key: AgAD+jcJRCSuJd2ChNur6j//3MD2HfPwq7rxOmotSicxtu3x5f5LXq/P6xRqAJ7uphNnnePR7/C5x+fsaRH8moR4r3EHq7ZOIm9htQoMX86v5g16dHFYtRjLKuusbcXZP6eY8EOwTG3g5Tx5aXY2/XN9Jzb/uepn4vzZR8fK+p89nbhrC/xBZRGaS944zc8NZcMzye5m91grXo4cY5ZRkYZEG3z6N8qt+26wDs/erA11fcp3fz5pWmJHM8kC0b4Mzx4VJWY10d/kx2xsNL5a1EIEB/yyfAS4uWpmINLLLcmcb233nEVGb0zpWutXdpvmfQWJiyxegAwSWLV+8L0C8FYnwVp6DUtlY3MlOSPYP+8V18AoxsFpg6qKjZ3dqOrzkq5YO8ArQqHNeT4J7KF1L/HALftaPvCX4QylIq8rZEGGBae+5gqftt9iZRAnpyC3xo8WAoMaG6H/2IS+m+R9zZndTDMdQ2jk5VEuOYFxpycQOz3J6iMME8l+XH6nPNLXejCLb00hn4sAuyUUpO2RwE0TF5SXeyyoXlizu+hjf40Z6X7muGOaMVlybv+pGmhTaFJmvffq8bNlHWYidGGbWHvGTKCoVcRCCb9JpxDpYiFYiWVX0MXGihCF9V54iOwt5S0PKsYFWL5AEu2rTv68oMBQoLd9HnaFNh685cnGanh5cFGPM1neJ6yi9iHLpZ5+qhhQZobdg0E+w9leOonEqk3u6FjU2HP1fawL6AjO8g95KWTDqPs=
+  template:
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/namespace-wide: "true"
+      creationTimestamp: null
+      name: sysdig-access-key
+      namespace: sysdig-agent
