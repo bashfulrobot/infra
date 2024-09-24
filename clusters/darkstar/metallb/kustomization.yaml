@@ -5,3 +5,9 @@ resources:
 - metallb-namespace.yaml
 - metallb-repository.yaml
 - metallb-release.yaml
+configMapGenerator:
+  - name: metallb-values
+    files:
+      - values.yaml=metallb-values.yaml
+configurations:
+  - kustomizeconfig.yaml
