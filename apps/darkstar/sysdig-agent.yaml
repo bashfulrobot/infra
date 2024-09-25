@@ -1,0 +1,11 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: flux-sysdig-helm-release
+  namespace: sysdig-agent
+spec:
+  interval: 10m
+  valuesFrom:
+  - kind: ConfigMap
+    name: sysdig-agent-values
