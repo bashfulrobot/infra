@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: sealed-secrets
 resources:
 - sealed-secrets.yaml
+- traefik-gateway-api.yaml
