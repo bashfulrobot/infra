@@ -6,9 +6,6 @@ metadata:
   namespace: sysdig-agent
 spec:
   interval: 10m
-  chart:
-    spec:
-      version: "1.65.6"
   values:
     global:
       clusterConfig:
