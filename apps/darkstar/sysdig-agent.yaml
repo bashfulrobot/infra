@@ -7,9 +7,8 @@ metadata:
 spec:
   interval: 10m
   values:
-    global:
-      clusterConfig:
-        name: darkstar
-        tags:
-          cluster_type: talos
-          environment: production
+    clusterConfig:
+      name: darkstar
+      tags:
+        cluster_type: talos
+        environment: production

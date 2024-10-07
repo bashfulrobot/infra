@@ -63,112 +63,96 @@ spec:
       retries: 3
   values:
     ## Create a values.yaml file with the following:
-    global:
-      sysdig_endpoint:
-        region: us2
-        # accessKey: xxxxxx
-        accessKeySecret: sysdig-access-key
-      features:
-        admission_control:
-          # Enable the admission control feature
+    sysdig_endpoint:
+      region: us2
+      # access_key: xxxxxx
+      access_key_existing_secret: sysdig-access-key
+    features:
+      admission_control:
+        # Enable the admission control feature
+        enabled: false
+        # Deny the admission of the pod if an error occurs
+        deny_on_error: false
+        # Enable the dry run mode
+        dry_run: true
+        container_vulnerability_management:
+          # Enable the container vulnerability management feature on the admission control
           enabled: false
-          # Deny the admission of the pod if an error occurs
-          deny_on_error: false
-          # Enable the dry run mode
-          dry_run: true
-          # The timeout for the admission control feature
-          timeout: 10
-          # The port that will be used to expose admission control endpoints
-          http_port: 8443
-          # The list of namespaces that will be excluded from the admission control
-          excluded_namespaces: []
-          container_vulnerability_management:
-            # Enable the container vulnerability management feature on the admission control
-            enabled: false
-
-        kubernetes_metadata:
-          # Enable the Kubernetes Metadata feature on cluster shield
+      kubernetes_metadata:
+        # Enable the Kubernetes Metadata feature on cluster shield
+        enabled: false
+      posture:
+        host_posture:
+          enabled: true
+        cluster_posture:
+          enabled: true
+      vulnerability_management:
+        host_vulnerability_management:
+          enabled: true
+        container_vulnerability_management:
+          enabled: true
+        in_use:
+          enabled: true
+      detections:
+        drift_control:
+          enabled: true
+        malware_control:
+          enabled: true
+        ml_policies:
+          enabled: true
+        kubernetes_audit:
+          # Enable the Kubernetes Audit feature on cluster shield
+          enabled: true
+      investigations:
+        activity_audit:
+          enabled: true
+        live_logs:
+          enabled: true
+        network_security:
+          enabled: true
+        audit_tap:
           enabled: false
-
-        posture:
-          host_posture:
-            enabled: true
-          cluster_posture:
-            enabled: true
-        vulnerability_management:
-          host_vulnerability_management:
-            enabled: true
-          container_vulnerability_management:
-            enabled: true
-          in_use:
-            enabled: true
-        detections:
-          drift_control:
-            enabled: true
-          malware_control:
-            enabled: true
-          ml_policies:
-            enabled: true
-          kubernetes_audit:
-            # Enable the Kubernetes Audit feature on cluster shield
-            enabled: true
-        investigations:
-          activity_audit:
-            enabled: true
-          live_logs:
-            enabled: true
-          network_security:
-            enabled: true
-          audit_tap:
-            enabled: false
-          captures:
-            enabled: true
-          event_forwarder:
-            enabled: false
-        responding:
-          rapid_response:
-            enabled: false
-        monitoring:
-          app_checks:
-            enabled: false
-          java_management_extensions:
-            enabled: false
-          prometheus:
-            enabled: true
-          statsd:
-            enabled: true
-
-      host:
-        resources:
-          kmodule:
-            limits:
-              cpu: 1000m
-              memory: 1Gi
-            requests:
-              cpu: 250m
-              memory: 384Mi
-          shield:
-            limits:
-              cpu: 1000m
-              memory: 1Gi
-            requests:
-              cpu: 250m
-              memory: 384Mi
-      cluster:
-        # The mode in which the cluster shield should run (Accepted Values: single-process, multi-process)
-        run_mode: multi-process
-        resources:
-          requests:
-            cpu: 500m
-            memory: 512Mi
-          limits:
-            cpu: 1500m
-            memory: 1536Mi
-        # Additional settings to be passed to the cluster shield (overrides the helm generated settings)
-        additional_settings:
-          log_level: info
-          monitoring_port: 8080
-        # Automatically adds the Prometheus annotations to the Cluster Shield pods
-        enable_prometheus_scraping: true
-        # The number of replicas for the cluster shield
-        replica_count: 1
+        captures:
+          enabled: true
+        event_forwarder:
+          enabled: false
+      responding:
+        rapid_response:
+          enabled: false
+      monitoring:
+        app_checks:
+          enabled: false
+        java_management_extensions:
+          enabled: false
+        prometheus:
+          enabled: true
+        statsd:
+          enabled: true
+    # host:
+    #   resources:
+    #     kmodule:
+    #       limits:
+    #         cpu: 1000m
+    #         memory: 1Gi
+    #       requests:
+    #         cpu: 250m
+    #         memory: 384Mi
+    #     shield:
+    #       limits:
+    #         cpu: 1000m
+    #         memory: 1Gi
+    #       requests:
+    #         cpu: 250m
+    #         memory: 384Mi
+    cluster:
+      # The mode in which the cluster shield should run (Accepted Values: single-process, multi-process)
+      run_mode: multi-process
+      # resources:
+      #   requests:
+      #     cpu: 500m
+      #     memory: 512Mi
+      #   limits:
+      #     cpu: 1500m
+      #     memory: 1536Mi
+      # Automatically adds the Prometheus annotations to the Cluster Shield pods
+      enable_prometheus_scraping: true
