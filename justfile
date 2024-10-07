@@ -16,7 +16,7 @@ _default:
     @just --list --unsorted --list-prefix ····
 
 # Force a flux reconciliation
-recocile-flux:
+flux-recocile:
     @flux reconcile -n flux-system kustomization flux-system
 # Display the events for the flux-system
 flux-events:
