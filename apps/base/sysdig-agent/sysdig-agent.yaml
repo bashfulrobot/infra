@@ -93,6 +93,8 @@ spec:
           enabled: true
         in_use:
           enabled: true
+          # Allows to store the list of running packages to Sysdig backend.
+          integration_enabled: true
       detections:
         drift_control:
           enabled: true
