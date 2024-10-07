@@ -21,7 +21,7 @@ recocile-flux:
 # Display the events for the flux-system
 flux-events:
     @kubectl events -n flux-system --for kustomization/flux-system
-# Create a sealed secret - Args: NAME NAMESPACE SECRET SECRET-VALUE
+# Create a sealed secret - IE: just create-sealed-secret sysdig-access-key sysdig-agent access-key 1234567890
 create-sealed-secret NAME NAMESPACE SECRET SECRET-VALUE:
     kubectl create secret generic {{NAME}} --from-literal={{SECRET}}={{SECRET-VALUE}} -n {{NAMESPACE}} -o yaml --dry-run=client | kubeseal --controller-namespace=sealed-secrets -n {{NAMESPACE}} --scope namespace-wide -o yaml > {{NAME}}-sealed.yaml
 # export the sealed secret public key
