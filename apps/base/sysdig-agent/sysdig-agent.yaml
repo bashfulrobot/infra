@@ -129,16 +129,10 @@ spec:
         prometheus:
           enabled: true
         statsd:
-          enabled: true
-    # host:
-    #   resources:
-    #     kmodule:
-    #       limits:
-    #         cpu: 1000m
-    #         memory: 1Gi
-    #       requests:
-    #         cpu: 250m
-    #         memory: 384Mi
+          enabled: false
+    host:
+      # The driver to use for the host agent (Accepted Values: kmod, legacy_ebpf, universal_ebpf)
+      driver: universal_ebpf
     #     shield:
     #       limits:
     #         cpu: 1000m
