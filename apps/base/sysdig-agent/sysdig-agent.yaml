@@ -15,7 +15,6 @@ kind: SealedSecret
 metadata:
   annotations:
     sealedsecrets.bitnami.com/namespace-wide: "true"
-  creationTimestamp: null
   name: sysdig-access-key
   namespace: sysdig-agent
 spec:
