@@ -1,0 +1,121 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sysdig-agent
+  labels:
+    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/enforce-version: latest
+    pod-security.kubernetes.io/audit: privileged
+    pod-security.kubernetes.io/audit-version: latest
+    pod-security.kubernetes.io/warn: privileged
+    pod-security.kubernetes.io/warn-version: latest
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/namespace-wide: "true"
+  creationTimestamp: null
+  name: sysdig-access-key
+  namespace: sysdig-agent
+spec:
+  encryptedData:
+    access-key: AgCPDiOBy+jt4kufx/+YGpk/e7831ug6+vuzCPsXc9Gn2fxSLtHTyzurjqUhdTna0C0RQkV1wluOFSUxOMmDGsc7A6cqK+5xJp1jOBZWbgH6CkUqzZ7DxeKorGg52jq8/kIaZ507a0A4v/75Q/TsJlWc6RT/mAXvGcgM4ovejlTRV+EKBdH+aC8uLM/V50SKeDevzfSOoVpyc530zURqaz+HmfQ5yjUYWh6KQYXecPjeyEtO/HQrc89acJbAD2D2rBE0LIidvjdMzt0BWLzpHGMAMw2U6GJd34npu3ADnQVuJuVdJ1kgXfiUXIR+R6lUWXuvEJNyIMuPDkCeym5YnC6J+vfLRvj1KKe5flCJgnZ751VMH8j4D0Ne0FuSvuMxKUR8tTmlBb7hPO0mlr9Y1CNJ1z60uO/AZ0g4pv6AZSfKcN/0WuwnFxUM+pCwvVXk5ftK+m0qYwBG+6+12kkcRCO7b4l1bJyCDRb0JivCCR2wNx0oo0BgXA3kOcA86HBSKU5v1auGr7ouecdBSCna56lJsYfYdCu+ELwZ/G82IEXNwDADqNKuGv8+1etkaSReqdMOjbsWPJ9kzDpkM/3gU3YV2C7QbrApDvXuPhE9xhiWluVj762FZCmg3fw5WnMEoa8o/+L5szekv3UXNnFwH5+V5QOWGGIcXTGuxNt8RJL5nXAMx+f2K0qrraPJf9UW0SAuNt7iiYz7KKApAQb+E7o9F5JEInVWvhTD8FfIblsYXzqr/kM=
+  template:
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/namespace-wide: "true"
+      creationTimestamp: null
+      name: sysdig-access-key
+      namespace: sysdig-agent
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: flux-sysdig-helm-repo
+  namespace: sysdig-agent
+spec:
+  interval: 1h0m0s
+  url: https://charts.sysdig.com
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: flux-sysdig-helm-release
+  namespace: sysdig-agent
+spec:
+  interval: 10m
+  timeout: 5m
+  chart:
+    spec:
+      chart: sysdig-deploy
+      sourceRef:
+        kind: HelmRepository
+        name: flux-sysdig-helm-repo
+        namespace: sysdig-agent
+      interval: 5m
+  releaseName: sysdig
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    ## Create a values.yaml file with the following:
+    global:
+      sysdig:
+        region: us2
+        # accessKey: xxxxxx
+        accessKeySecret: sysdig-access-key
+      kspm:
+        deploy: true
+    agent:
+      # Set at the chart level in each clusters patch
+      # image:
+      #   tag: 13.2.0
+      ebpf:
+        enabled: true
+        kind: universal_ebpf
+    nodeAnalyzer:
+      enabled: true
+      secure:
+        vulnerabilityManagement:
+          newEngineOnly: true
+      nodeAnalyzer:
+        benchmarkRunner:
+          deploy: false
+        hostAnalyzer:
+          deploy: false
+        runtimeScanner:
+          deploy: false
+        hostScanner:
+          deploy: true
+    kspmCollector:
+      enabled: false
+    admissionController:
+      enabled: false
+    clusterShield:
+      enabled: true
+      cluster_shield:
+        # some options: warn, err, debug
+        log_level: err
+        # Only needed on a large cluster -If you need more resources
+        # the default requests are ~500Mb + 0.2 CPU or something
+        # So we basically change only limits
+        # resources:
+        #   limits:
+        #     cpu: 2000m
+        #     memory: 2048Mi
+        #   requests:
+        #     cpu: 500m
+        #     memory: 512Mi
+        features:
+          admission_control:
+            enabled: true
+          audit:
+            enabled: true
+          container_vulnerability_management:
+            enabled: true
+          posture:
+            enabled: true
