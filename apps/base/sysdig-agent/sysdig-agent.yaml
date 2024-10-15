@@ -64,7 +64,7 @@ spec:
     ## Create a values.yaml file with the following:
     sysdig_endpoint:
       region: us2
-      api_url: https://us2.app.sysdig.com
+      # api_url: https://us2.app.sysdig.com
       # access_key: xxxxxx
       access_key_existing_secret: sysdig-access-key
     features:
