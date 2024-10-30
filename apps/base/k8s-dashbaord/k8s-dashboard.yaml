@@ -22,7 +22,7 @@ spec:
   timeout: 5m
   chart:
     spec:
-      chart: kubernetes-dashboard/kubernetes-dashboard
+      chart: kubernetes-dashboard
       sourceRef:
         kind: HelmRepository
         name: flux-k8s-db-helm-repo
