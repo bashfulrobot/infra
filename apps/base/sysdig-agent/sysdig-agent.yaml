@@ -79,6 +79,7 @@ spec:
         kind: universal_ebpf
     sysdig:
     settings:
+    # TODO: what does this default to?
       enrich_with_process_lineage: true
     nodeAnalyzer:
       enabled: true
