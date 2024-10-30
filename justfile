@@ -17,10 +17,10 @@ _default:
 
 # Force a flux reconciliation
 flux-recocile:
-    @flux reconcile -n flux-system kustomization flux-system
-# Force a sysdig agent reconciliation
-sysdig-reconcile:
-    @flux reconcile helmrelease flux-sysdig-helm-release -n sysdig-agent
+    @flux reconcile source git flux-system -n flux-system
+flux-kustomization-reconcile:
+    @flux suspend kustomization --all
+    @flux resume kustomization --all
 # Display the events for the flux-system
 flux-events:
     @kubectl events -n flux-system --for kustomization/flux-system
