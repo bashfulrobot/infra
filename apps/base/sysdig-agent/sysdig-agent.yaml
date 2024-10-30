@@ -77,6 +77,9 @@ spec:
       ebpf:
         enabled: true
         kind: universal_ebpf
+    sysdig:
+    settings:
+      enrich_with_process_lineage: true
     nodeAnalyzer:
       enabled: true
       secure:
