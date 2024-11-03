@@ -35,7 +35,7 @@ metadata:
   name: flux-sysdig-helm-repo
   namespace: sysdig-agent
 spec:
-  interval: 1h0m0s
+  interval: 15m
   url: https://charts.sysdig.com
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2

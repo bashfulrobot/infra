@@ -9,7 +9,7 @@ metadata:
   name: flux-k8s-db-helm-repo
   namespace: kubernetes-dashboard
 spec:
-  interval: 1h0m0s
+  interval: 15m
   url: https://kubernetes.github.io/dashboard
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
