@@ -30,6 +30,9 @@ create-sealed-secret NAME NAMESPACE SECRET SECRET-VALUE:
 # export the sealed secret public key
 export-sealed-secret-pubkey:
     @kubeseal --fetch-cert --controller-name=sealed-secrets-controller --controller-namespace=sealed-secrets > pub-sealed-secrets.pem
+# Expose k8s dashbaord temporarily
+expose-k8s-dashboard:
+    @kubectl port-forward deployments/kubernetes-dashboard-web 8000:8000 -n kubernetes-dashboard
 # show Bootstrap command - run under bash
 bootstrap-flux-cluster:
     @echo "Token expires in 2025"
