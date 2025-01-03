@@ -40,7 +40,7 @@
 - I need to remember how to do this stuff
 - The cluster is not exposed to the world
 
-```
+```shell
 cd kubeseal/clustername
 kubeseal --fetch-cert \
 --controller-name=sealed-secrets-controller \
@@ -48,7 +48,7 @@ kubeseal --fetch-cert \
 > pub-sealed-secrets.pem
 ```
 
-```
+```shell
 kubectl -n default create secret generic sysdig-access-key \
 --from-literal=sysdig-access-key=[AGENT-KEY] \
 --dry-run=client \
@@ -60,7 +60,7 @@ kubeseal --format=yaml --cert=pub-sealed-secrets.pem \
 - add/update the content from `sysdig-access-key-sealed.yaml` to `apps/base/sysdig-agent/sysdig-agent.yaml`
 - add the annotations to the `template` section
 
-```
+```yaml
 template:
     metadata:
       annotations:
