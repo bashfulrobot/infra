@@ -78,10 +78,6 @@ template:
 
 - Using this guide to setp [sealed secrets](https://fluxcd.io/flux/guides/sealed-secrets/)
 
-## Traefik (Gateway API)
-
-- <https://traefik.io/blog/getting-started-with-kubernetes-gateway-api-and-traefik/>
-
 ## Sysdig Agent
 
 ### Get Chart Version
