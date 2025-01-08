@@ -46,7 +46,7 @@ spec:
       enabled: true
     # externalIPs:
     #   enabled: true
-    devices: eth+
+    # devices: eth+
 
     securityContext:
       capabilities:
