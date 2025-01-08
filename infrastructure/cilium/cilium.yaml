@@ -66,3 +66,11 @@ spec:
 
     k8sServiceHost: localhost
     k8sServicePort: 7445
+---
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: "colim-pool"
+spec:
+  blocks:
+  - start: "172.16.200.100"
