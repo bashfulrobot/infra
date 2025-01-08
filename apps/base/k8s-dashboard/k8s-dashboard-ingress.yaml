@@ -3,8 +3,6 @@ kind: Ingress
 metadata:
   name: kubernetes-dashboard-ingress
   namespace: kubernetes-dashboard
-  annotations:
-    kubernetes.io/ingress.class: cilium
 spec:
   ingressClassName: cilium
   rules:
