@@ -37,11 +37,16 @@ spec:
   values:
     ipam:
       mode: kubernetes
-
     kubeProxyReplacement: true
+
     ingressController:
       enabled: true
       loadbalancerMode: dedicated
+    l2announcements:
+      enabled: true
+    externalIPs:
+      enabled: true
+    devices: eth+
 
     securityContext:
       capabilities:
@@ -78,3 +83,13 @@ spec:
   blocks:
   - start: "172.16.200.100"
     stop: "172.16.200.250"
+---
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumL2AnnouncementPolicy
+metadata:
+  name: basic-policy
+spec:
+  interfaces:
+  - eth0
+  externalIPs: true
+  loadBalancerIPs: true
