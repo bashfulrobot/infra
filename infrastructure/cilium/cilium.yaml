@@ -39,6 +39,9 @@ spec:
       mode: kubernetes
 
     kubeProxyReplacement: true
+    ingressController:
+      enabled: true
+      loadbalancerMode: dedicated
 
     securityContext:
       capabilities:
