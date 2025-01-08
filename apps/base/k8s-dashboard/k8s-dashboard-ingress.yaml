@@ -2,12 +2,18 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: kubernetes-dashboard-ingress
+  namespace: kubernetes-dashboard
   annotations:
     kubernetes.io/ingress.class: cilium
 spec:
   ingressClassName: cilium
-  defaultBackend:
-    service:
-      name: kubernetes-dashboard-web
-      port:
-        number: 8000
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kubernetes-dashboard-kong-proxy
+            port:
+              number: 443
