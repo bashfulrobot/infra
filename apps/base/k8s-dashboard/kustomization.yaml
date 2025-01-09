@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: kubernetes-dashboard
 resources:
   - k8s-dashboard.yaml
-  # - k8s-dashboard-ingress.yaml
+  - k8s-dashboard-ingress.yaml
