@@ -3,6 +3,9 @@ kind: Ingress
 metadata:
   name: kubernetes-dashboard-ingress
   namespace: kubernetes-dashboard
+  annotations:
+    ingress.cilium.io/ssl-redirect: "false"
+    ingress.cilium.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: cilium
   rules:
