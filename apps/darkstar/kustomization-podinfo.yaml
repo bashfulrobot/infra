@@ -15,5 +15,5 @@ spec:
   targetNamespace: podinfo
   timeout: 3m0s
   wait: true
-  resources:
-    - ./podinfo-ingress.yaml
+resources:
+  - ./podinfo-ingress.yaml
