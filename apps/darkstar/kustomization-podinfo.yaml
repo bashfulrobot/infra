@@ -2,10 +2,8 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: podinfo
+  name: podinfo-git
   namespace: podinfo
-resources:
-  - ./podinfo-ingress.yaml
 spec:
   interval: 30m0s
   path: ./kustomize
@@ -17,3 +15,11 @@ spec:
   targetNamespace: podinfo
   timeout: 3m0s
   wait: true
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: podinfo-ingress
+  namespace: podinfo
+resources:
+  - ./podinfo-ingress.yaml
