@@ -44,9 +44,9 @@ spec:
       loadbalancerMode: dedicated
     l2announcements:
       enabled: true
-    # externalIPs:
-    #   enabled: true
-    # devices: eth+
+    externalIPs:
+      enabled: true
+    devices: eth0
 
     securityContext:
       capabilities:
