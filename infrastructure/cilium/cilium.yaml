@@ -44,9 +44,13 @@ spec:
       loadbalancerMode: dedicated
     l2announcements:
       enabled: true
-    externalIPs:
-      enabled: true
-    devices: eth0
+      leaseRenewDeadline: 2s
+    devices: eth+
+    k8sClientRateLimit:
+      # numworkloads * (1/leaseRenewDeadline)
+      qps: 50
+      # 2x qps
+      burst: 100
 
     securityContext:
       capabilities:
@@ -87,9 +91,8 @@ spec:
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumL2AnnouncementPolicy
 metadata:
-  name: basic-policy
+  name: basic-L2-policy
 spec:
   interfaces:
-  - eth0
-  externalIPs: true
+  - eth+
   loadBalancerIPs: true
