@@ -45,7 +45,7 @@ spec:
     l2announcements:
       enabled: true
       leaseRenewDeadline: 2s
-    devices: eth+
+    devices: ens3
     k8sClientRateLimit:
       # numworkloads * (1/leaseRenewDeadline)
       qps: 50
@@ -94,5 +94,5 @@ metadata:
   name: basic-l2-policy
 spec:
   interfaces:
-  - eth+
+  - ens3
   loadBalancerIPs: true
