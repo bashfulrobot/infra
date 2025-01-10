@@ -91,7 +91,7 @@ spec:
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumL2AnnouncementPolicy
 metadata:
-  name: basic-L2-policy
+  name: basic-l2-policy
 spec:
   interfaces:
   - eth+
