@@ -11,6 +11,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/cilium
+  path: ./infrastructure/cilium-enterprise
   prune: true
   wait: true

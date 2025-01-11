@@ -1,0 +1,98 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kube-system
+  labels:
+    toolkit.fluxcd.io/tenant: cluster-admin
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: cilium
+  namespace: kube-system
+spec:
+  interval: 1h0m0s
+  url: https://helm.cilium.io/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cilium
+  namespace: kube-system
+spec:
+  chart:
+    spec:
+      chart: cilium
+      sourceRef:
+        kind: HelmRepository
+        name: cilium
+      version: ">=1.16.5"
+  interval: 1h0m0s
+  releaseName: cilium
+  targetNamespace: kube-system
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  values:
+    ipam:
+      mode: kubernetes
+    kubeProxyReplacement: true
+
+    ingressController:
+      enabled: true
+      loadbalancerMode: dedicated
+    l2announcements:
+      enabled: true
+      leaseRenewDeadline: 2s
+    devices: ens3
+    k8sClientRateLimit:
+      # numworkloads * (1/leaseRenewDeadline)
+      qps: 50
+      # 2x qps
+      burst: 100
+
+    securityContext:
+      capabilities:
+        ciliumAgent:
+          - CHOWN
+          - KILL
+          - NET_ADMIN
+          - NET_RAW
+          - IPC_LOCK
+          - SYS_ADMIN
+          - SYS_RESOURCE
+          - DAC_OVERRIDE
+          - FOWNER
+          - SETGID
+          - SETUID
+        cleanCiliumState:
+          - NET_ADMIN
+          - SYS_ADMIN
+          - SYS_RESOURCE
+
+    cgroup:
+      autoMount:
+        enabled: false
+      hostRoot: /sys/fs/cgroup
+
+    k8sServiceHost: localhost
+    k8sServicePort: 7445
+---
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: "cilium-pool"
+spec:
+  blocks:
+  - start: "172.16.250.100"
+    stop: "172.16.250.250"
+---
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumL2AnnouncementPolicy
+metadata:
+  name: basic-l2-policy
+spec:
+  interfaces:
+  - ens3
+  loadBalancerIPs: true
