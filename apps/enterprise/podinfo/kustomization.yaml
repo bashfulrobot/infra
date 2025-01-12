@@ -4,4 +4,4 @@ metadata:
   name: podinfo
   namespace: kubernetes-dashboard
 resources:
-  - ../base/podinfo
+  - ../../base/podinfo
