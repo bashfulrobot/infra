@@ -1,12 +1,7 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: podinfo
----
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: podinfo
+  name: podinfo-gitrepo
   namespace: podinfo
 spec:
   interval: 1m0s

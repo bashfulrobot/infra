@@ -80,15 +80,6 @@ spec:
     k8sServicePort: 7445
 ---
 apiVersion: "cilium.io/v2alpha1"
-kind: CiliumLoadBalancerIPPool
-metadata:
-  name: "cilium-pool"
-spec:
-  blocks:
-  - start: "172.16.250.100"
-    stop: "172.16.250.250"
----
-apiVersion: "cilium.io/v2alpha1"
 kind: CiliumL2AnnouncementPolicy
 metadata:
   name: basic-l2-policy

@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: apps
+  name: apps-enterprise
   namespace: flux-system
 spec:
   interval: 10m0s
@@ -11,7 +11,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./apps/darkstar
+  path: ./apps/enterprise
   prune: true
   wait: true
   timeout: 5m0s

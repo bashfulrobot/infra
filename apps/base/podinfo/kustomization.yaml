@@ -22,4 +22,5 @@ metadata:
   name: podinfo-ingress
   namespace: podinfo
 resources:
-  - ./podinfo-ingress.yaml
+  - namespace.yaml
+  - ingress.yaml
