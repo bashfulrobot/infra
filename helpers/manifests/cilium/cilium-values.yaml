@@ -1,0 +1,53 @@
+ipam:
+  mode: kubernetes
+kubeProxyReplacement: true
+
+ingressController:
+  enabled: true
+  loadbalancerMode: dedicated
+l2announcements:
+  enabled: true
+  leaseRenewDeadline: 2s
+devices: ens3
+k8sClientRateLimit:
+  # numworkloads * (1/leaseRenewDeadline)
+  qps: 50
+  # 2x qps
+  burst: 100
+
+securityContext:
+  capabilities:
+    ciliumAgent:
+      - CHOWN
+      - KILL
+      - NET_ADMIN
+      - NET_RAW
+      - IPC_LOCK
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+    cleanCiliumState:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - SYS_RESOURCE
+
+cgroup:
+  autoMount:
+    enabled: false
+  hostRoot: /sys/fs/cgroup
+
+k8sServiceHost: localhost
+k8sServicePort: 7445
+
+ciliumLoadBalancerIPPool:
+  blocks:
+    - start: "172.16.200.100"
+      stop: "172.16.200.250"
+
+ciliumL2AnnouncementPolicy:
+  interfaces:
+    - ens3
+  loadBalancerIPs: true
