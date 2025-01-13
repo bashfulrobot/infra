@@ -5,3 +5,4 @@ metadata:
   namespace: kubernetes-dashboard
 resources:
   - ../../base/k8s-dashboard
+  - ./source
