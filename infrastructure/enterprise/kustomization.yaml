@@ -6,4 +6,3 @@ metadata:
 resources:
 - ../base/cilium.yaml
 - cilium.yaml
-- ../base/sealed-secrets.yaml
