@@ -21,9 +21,21 @@ flux-recocile:
 flux-kustomization-reconcile:
     @flux suspend kustomization --all
     @flux resume kustomization --all
-# Display the events for the flux-system
-flux-events:
+# Force full reconciliation of the flux and kustomizations
+force-reconcile:
+    @just flux-recocile
+    @just flux-kustomization-reconcile
+    @just flux-status
+# Display the status of Flux
+flux-status:
+    @echo "Reconciliation complete"
+    @echo "Getting Flux and Kustomization status"
+    @kubectl get kustomizations -A
+    @echo "----------"
     @kubectl events -n flux-system --for kustomization/flux-system
+    @echo "----------"
+    @flux events --types Warning -A
+    @echo "----------"
 # Create a sealed secret - IE: just create-sealed-secret sysdig-access-key sysdig-agent access-key 1234567890
 create-sealed-secret NAME NAMESPACE SECRET SECRET-VALUE:
     kubectl create secret generic {{NAME}} --from-literal={{SECRET}}={{SECRET-VALUE}} -n {{NAMESPACE}} -o yaml --dry-run=client | kubeseal --controller-namespace=sealed-secrets -n {{NAMESPACE}} --scope namespace-wide -o yaml > {{NAME}}-sealed.yaml
