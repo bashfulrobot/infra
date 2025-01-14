@@ -5,7 +5,7 @@ metadata:
   namespace: podinfo
 spec:
   interval: 10m
-  path: ./../../base/podinfo/flux
+  path: ./../../base/podinfo/flux/kustomization.yaml
   prune: true
   sourceRef:
     kind: GitRepository
