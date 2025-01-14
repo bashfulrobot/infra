@@ -1,3 +1,14 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: podinfo-gitrepo
+  namespace: podinfo
+spec:
+  interval: 1m0s
+  ref:
+    branch: master
+  url: https://github.com/stefanprodan/podinfo
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
