@@ -5,7 +5,7 @@ metadata:
   namespace: podinfo
 spec:
   interval: 10m
-  path: ./apps/base/podinfo/flux
+  path: ./../../base/podinfo/flux
   prune: true
   sourceRef:
     kind: GitRepository
