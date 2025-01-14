@@ -36,6 +36,9 @@ flux-status:
     @echo "----------"
     @flux events --types Warning -A
     @echo "----------"
+# Display Flux events
+flux-events:
+    @flux events --types Warning -A
 # Create a sealed secret - IE: just create-sealed-secret sysdig-access-key sysdig-agent access-key 1234567890
 create-sealed-secret NAME NAMESPACE SECRET SECRET-VALUE:
     kubectl create secret generic {{NAME}} --from-literal={{SECRET}}={{SECRET-VALUE}} -n {{NAMESPACE}} -o yaml --dry-run=client | kubeseal --controller-namespace=sealed-secrets -n {{NAMESPACE}} --scope namespace-wide -o yaml > {{NAME}}-sealed.yaml
