@@ -5,3 +5,4 @@ metadata:
   namespace: kubernetes-dashboard
 resources:
   - ../../base/podinfo
+  - ../../base/podinfo/flux
