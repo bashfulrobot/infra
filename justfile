@@ -26,6 +26,9 @@ force-reconcile:
     @just flux-recocile
     @just flux-kustomization-reconcile
     @just flux-status
+force-reconcile2:
+    @flux reconcile kustomization flux-system --with-source
+    @just flux-status
 # Display the status of Flux
 flux-status:
     @echo "Reconciliation complete"
