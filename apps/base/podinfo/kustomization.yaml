@@ -6,4 +6,4 @@ metadata:
 resources:
   - namespace.yaml
   - ingress.yaml
-  - podinfo.yaml
+  - podinfo-git.yaml
