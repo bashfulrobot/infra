@@ -1,8 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 metadata:
-  name: podinfo-enterprise
+  name: podinfo-enterprise-flux
   namespace: kubernetes-dashboard
 resources:
-  - ../../base/podinfo/k8s
-  - ./kustomization-flux.yaml
+  - ../../base/podinfo/flux
