@@ -16,18 +16,22 @@ _default:
     @just --list --unsorted --list-prefix ····
 
 # Force a flux reconciliation
-flux-recocile:
+flux-reconcile:
     @flux reconcile source git flux-system -n flux-system
 flux-kustomization-reconcile:
     @flux suspend kustomization --all
     @flux resume kustomization --all
 # Force full reconciliation of the flux and kustomizations
+# force-reconcile:
+#     @just flux-recocile
+#     @just flux-kustomization-reconcile
+#     @just flux-status
+# Force full reconciliation of the flux and kustomizations
 force-reconcile:
-    @just flux-recocile
-    @just flux-kustomization-reconcile
-    @just flux-status
-force-reconcile2:
     @flux reconcile kustomization flux-system --with-source
+    @flux reconcile source git flux-system -n flux-system
+    @flux suspend kustomization --all
+    @flux resume kustomization --all
     @just flux-status
 # Display the status of Flux
 flux-status:
