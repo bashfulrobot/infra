@@ -32,11 +32,9 @@ force-reconcile:
 flux-status:
     @echo "Reconciliation complete"
     @echo "Getting Flux and Kustomization status"
-    @kubectl get kustomizations -A
-    @echo "----------"
     @kubectl events -n flux-system --for kustomization/flux-system
     @echo "----------"
-    @flux events --types Warning -A
+    @kubectl get kustomizations -A
     @echo "----------"
 # Display Flux events
 flux-events:
