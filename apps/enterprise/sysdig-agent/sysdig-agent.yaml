@@ -1,0 +1,16 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: flux-sysdig-helm-release
+  namespace: sysdig-agent
+spec:
+  interval: 10m
+  values:
+    global:
+      clusterConfig:
+        name: darkstar
+        tags:
+          cluster_type: talos
+          environment: production
+          helm-chart: sysdig-deploy

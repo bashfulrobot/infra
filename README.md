@@ -41,37 +41,31 @@
 - The cluster is not exposed to the world
 
 ```shell
-cd kubeseal/clustername
-kubeseal --fetch-cert \
---controller-name=sealed-secrets-controller \
---controller-namespace=sealed-secrets \
-> pub-sealed-secrets.pem
+just export-sealed-secret-pubkey
+just create-sealed-secret sysdig-access-key sysdig-agent access-key xxxxxxxxxxxx
+mv pub-sealed-secrets.pem kubeseal/clustername
+mv sysdig-access-key-sealed.yaml apps/clustername/sysdig-agent
 ```
 
-```shell
-kubectl -n default create secret generic sysdig-access-key \
---from-literal=sysdig-access-key=[AGENT-KEY] \
---dry-run=client \
--o yaml > sysdig-access-key.yaml
-kubeseal --format=yaml --cert=pub-sealed-secrets.pem \
-< sysdig-access-key.yaml > sysdig-access-key-sealed.yaml
-```
-
-- add/update the content from `sysdig-access-key-sealed.yaml` to `apps/base/sysdig-agent/sysdig-agent.yaml`
-- add the annotations to the `template` section
+- add/update the content from `sysdig-access-key-sealed.yaml` to `apps/clustername/sysdig-agent/sealed-secret.yaml`
+- add the annotations to the `template` section (if not there)
+- edit or create `apps/clustername/sysdig-agent/kustomization.yaml`:
 
 ```yaml
-template:
-    metadata:
-      annotations:
-        sealedsecrets.bitnami.com/namespace-wide: "true"
-      creationTimestamp: null
-      name: sysdig-access-key
-      namespace: sysdig-agent
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: sysdig-agent
+  namespace: sysdig-agent
+resources:
+  - ../base/sysdig-agent
+  - ./sysdig-access-key-sealed.yaml
+patches:
+  - path: sysdig-agent.yaml
+    target:
+      kind: HelmRelease
 ```
 
-- delete `kubeseal/darkstar/sysdig-access-key-sealed.yaml` and `kubeseal/darkstar/sysdig-access-key.yaml`
-    - DO NOT CHECK INTO GIT
 - Re-enable the sysdig agent
 
 ### How
