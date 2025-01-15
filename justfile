@@ -22,11 +22,6 @@ flux-kustomization-reconcile:
     @flux suspend kustomization --all
     @flux resume kustomization --all
 # Force full reconciliation of the flux and kustomizations
-# force-reconcile:
-#     @just flux-recocile
-#     @just flux-kustomization-reconcile
-#     @just flux-status
-# Force full reconciliation of the flux and kustomizations
 force-reconcile:
     @flux reconcile kustomization flux-system --with-source
     @flux reconcile source git flux-system -n flux-system
