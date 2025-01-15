@@ -6,7 +6,7 @@ metadata:
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: flux-k8s-db-helm-repo
+  name: kubernetes-dashboard-helmrepo
   namespace: kubernetes-dashboard
 spec:
   interval: 15m
@@ -25,7 +25,7 @@ spec:
       chart: kubernetes-dashboard
       sourceRef:
         kind: HelmRepository
-        name: flux-k8s-db-helm-repo
+        name: kubernetes-dashboard-helmrepo
         namespace: kubernetes-dashboard
       interval: 5m
   releaseName: kubernetes-dashboard

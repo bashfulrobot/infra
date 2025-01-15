@@ -13,7 +13,7 @@ metadata:
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: flux-sysdig-helm-repo
+  name: sysdig-agent-helmrepo
   namespace: sysdig-agent
 spec:
   interval: 15m
@@ -32,7 +32,7 @@ spec:
       chart: sysdig-deploy
       sourceRef:
         kind: HelmRepository
-        name: flux-sysdig-helm-repo
+        name: sysdig-agent-helmrepo
         namespace: sysdig-agent
       interval: 5m
   releaseName: sysdig
