@@ -4,5 +4,7 @@ metadata:
   name: infrastructure-enterprise
   namespace: flux-system
 resources:
-- ../base/cilium.yaml
-- cilium.yaml
+  - ../base/cilium.yaml
+  - cilium.yaml
+  - ../base/sealed-secrets.yaml
+
