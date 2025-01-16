@@ -27,6 +27,8 @@ force-reconcile:
     @flux reconcile source git flux-system -n flux-system
     @flux suspend kustomization --all
     @flux resume kustomization --all
+    @flux suspend hr --all                                                   infra on  main
+    @flux resume hr --all
     @just flux-status
 # Display the status of Flux
 flux-status:
