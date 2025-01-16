@@ -57,6 +57,8 @@ bootstrap-flux-cluster:
 # Check if Cilium L2 is active
 check-cilium-ls:
     @kubectl -n kube-system exec ds/cilium -c cilium-agent -- cilium-dbg config --all | grep EnableL2Announcements
-# Check available Sysdig-deploy Helm chart versions
-sysdig-versions:
+# Check available Helm chart versions
+chart-versions:
     @helm search repo sysdig/sysdig-deploy --versions | head -5
+    @helm search repo cilium/cilium --versions | head -5
+    @helm search repo kubernetes-dashboard/kubernetes-dashboard --versions | head -5
