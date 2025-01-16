@@ -62,3 +62,9 @@ chart-versions:
     @helm search repo sysdig/sysdig-deploy --versions | head -5
     @helm search repo cilium/cilium --versions | head -5
     @helm search repo kubernetes-dashboard/kubernetes-dashboard --versions | head -5
+# Add Helm repos to support version checks
+charts-add:
+    @helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+    @helm repo add sysdig https:charts.sysdig.com/
+    @helm repo add cilium https://helm.cilium.io/
+    @helm repo update
