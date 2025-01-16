@@ -27,8 +27,8 @@ force-reconcile:
     @flux reconcile source git flux-system -n flux-system
     @flux suspend kustomization --all
     @flux resume kustomization --all
-    @flux suspend hr --all                                                   infra on  main
-    @flux resume hr --all
+    #@flux suspend hr --all                                                   infra on  main
+    #@flux resume hr --all
     @just flux-status
 # Display the status of Flux
 flux-status:
@@ -57,3 +57,6 @@ bootstrap-flux-cluster:
 # Check if Cilium L2 is active
 check-cilium-ls:
     @kubectl -n kube-system exec ds/cilium -c cilium-agent -- cilium-dbg config --all | grep EnableL2Announcements
+# Check available Sysdig-deploy Helm chart versions
+sysdig-versions:
+    @helm search repo sysdig/sysdig-deploy --versions | head -5
