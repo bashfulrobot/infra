@@ -52,3 +52,6 @@ expose-k8s-dashboard:
 bootstrap-flux-cluster:
     @echo "Token expires in 2025"
     @echo "export GITHUB_TOKEN=<gh-token> && flux bootstrap github --token-auth --owner=bashfulrobot --repository=infra --branch=main --path=clusters/darkstar --personal"
+# Check if Cilium L2 is active
+check-cilium-ls:
+    @kubectl -n kube-system exec ds/cilium -c cilium-agent -- cilium-dbg config --all | grep EnableL2Announcements
