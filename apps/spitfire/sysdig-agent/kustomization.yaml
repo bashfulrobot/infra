@@ -3,10 +3,10 @@ kind: Kustomization
 metadata:
   name: sysdig-agent-spitfire
   namespace: sysdig-agent
-# resources:
-#   - ../../base/sysdig-agent
-#   - ./sysdig-access-key-sealed.yaml
-# patches:
-#   - path: sysdig-agent.yaml
-#     target:
-#       kind: HelmRelease
+resources:
+  - ../../base/sysdig-agent
+  - ./sysdig-access-key-sealed.yaml
+patches:
+  - path: sysdig-agent.yaml
+    target:
+      kind: HelmRelease
