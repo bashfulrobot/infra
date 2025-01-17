@@ -30,7 +30,7 @@ spec:
   chart:
     spec:
       chart: sysdig-deploy
-      version: 1.74.0
+      version: 1.73.3
       sourceRef:
         kind: HelmRepository
         name: sysdig-agent-helmrepo
