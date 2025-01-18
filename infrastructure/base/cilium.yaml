@@ -38,7 +38,10 @@ spec:
     ipam:
       mode: kubernetes
     kubeProxyReplacement: true
-
+    # Enable pod to pod encryption
+    encryption:
+      enabled: true
+      type: wireguard
     ingressController:
       enabled: true
       loadbalancerMode: dedicated
