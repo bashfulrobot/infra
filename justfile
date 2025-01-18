@@ -60,6 +60,7 @@ check-cilium-ls:
 # Check available Helm chart versions
 chart-versions:
     @helm search repo sysdig/sysdig-deploy --versions | head -5
+    @helm search repo sysdig/shield --versions | head -5
     @helm search repo cilium/cilium --versions | head -5
     @helm search repo kubernetes-dashboard/kubernetes-dashboard --versions | head -5
 # Add Helm repos to support version checks

@@ -4,4 +4,5 @@ metadata:
   name: sysdig-agent-app-base
   namespace: podinfo
 resources:
-  - sysdig-agent.yaml
+  # - sysdig-agent.yaml
+  - sysdig-shield.yaml

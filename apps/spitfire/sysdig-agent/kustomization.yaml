@@ -7,6 +7,6 @@ resources:
   - ../../base/sysdig-agent
   - ./sysdig-access-key-sealed.yaml
 patches:
-  - path: sysdig-agent.yaml
+  - path: sysdig-shield.yaml
     target:
       kind: HelmRelease

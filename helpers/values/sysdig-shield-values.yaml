@@ -1,0 +1,54 @@
+# Full values: https://github.com/sysdiglabs/charts/blob/main/charts/shield/values.yaml
+cluster_config:
+  name: <CLUSTERNAME>
+sysdig_endpoint:
+  region: us2
+  access_key_existing_secret: <SEALED SECRET>
+features:
+  admission_control:
+    enabled: false
+  kubernetes_metadata:
+    enabled: true
+  posture:
+    host_posture:
+      enabled: true
+    cluster_posture:
+      enabled: true
+  vulnerability_management:
+    host_vulnerability_management:
+      enabled: true
+    container_vulnerability_management:
+      enabled: true
+    in_use:
+      enabled: true
+      integration_enabled: true
+  detections:
+    drift_control:
+      enabled: true
+    malware_control:
+      enabled: true
+    ml_policies:
+      enabled: true
+    kubernetes_audit:
+      enabled: true
+  investigations:
+    activity_audit:
+      enabled: true
+    live_logs:
+      enabled: true
+    network_security:
+      enabled: true
+    audit_tap:
+      enabled: true
+    captures:
+      enabled: true
+    responding:
+      rapid_response:
+        enabled: false
+host:
+  driver: universal_ebpf
+  privileged: true
+# cluster:
+#   replica_count: 1
+#   additional_settings:
+#     log_level: debug
