@@ -34,6 +34,7 @@ spec:
     crds: Create
   upgrade:
     crds: CreateReplace
+    # https://github.com/cilium/cilium/blob/main/install/kubernetes/cilium/values.yaml
   values:
     ipam:
       mode: kubernetes
@@ -42,6 +43,7 @@ spec:
     encryption:
       enabled: true
       type: wireguard
+      nodeEncryption: false
     ingressController:
       enabled: true
       loadbalancerMode: dedicated

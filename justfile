@@ -57,6 +57,13 @@ bootstrap-flux-cluster:
 # Check if Cilium L2 is active
 check-cilium-ls:
     @kubectl -n kube-system exec ds/cilium -c cilium-agent -- cilium-dbg config --all | grep EnableL2Announcements
+# Check if Cilium encryption is active
+check-cilium-encryption:
+    @kubectl -n kube-system exec ds/cilium -ti -- cilium status | grep Encryption
+# Restart Cilium
+cilium-restart:
+    # @kubectl -n kube-system delete pods -l k8s-app=cilium
+    @kubectl rollout restart daemonset/cilium -n kube-system
 # Check available Helm chart versions
 chart-versions:
     @helm search repo sysdig/sysdig-deploy --versions | head -5
