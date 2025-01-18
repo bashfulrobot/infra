@@ -9,7 +9,7 @@ spec:
   values:
     global:
       clusterConfig:
-        name: darkstar
+        name: enterprise
         tags:
           cluster_type: talos
           environment: production
