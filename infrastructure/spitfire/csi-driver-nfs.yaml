@@ -1,0 +1,58 @@
+# References:
+#  - https://rudimartinsen.com/2024/01/09/nfs-csi-driver-kubernetes/
+# - https://jbn1233.medium.com/kubernetes-csi-csi-driver-nfs-with-subdir-132d3e04e424
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: csi-driver-nfs
+  labels:
+    toolkit.fluxcd.io/tenant: cluster-admin
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: csi-driver-nfs-helmrepo
+  namespace: csi-driver-nfs
+spec:
+  interval: 1h0m0s
+  url: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: csi-driver-nfs
+  namespace: csi-driver-nfs
+spec:
+  chart:
+    spec:
+      chart: csi-driver-nfs
+      sourceRef:
+        kind: HelmRepository
+        name: csi-driver-nfs-helmrepo
+      version: ">=4.9.0"
+  interval: 1h0m0s
+  releaseName: csi-driver-nfs
+  targetNamespace: csi-driver-nfs
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 192.168.168.1
+  share: /exports/spitfire/
+  subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}/${pv.metadata.name}
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+mountOptions:
+  - nfsvers=4.2
+  - rsize=65536
+  - wsize=65536
+  - async
+  - noatime
+  - tcp

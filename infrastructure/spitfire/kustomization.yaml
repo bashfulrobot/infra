@@ -6,4 +6,5 @@ metadata:
 resources:
   - ../base/cilium.yaml
   - cilium.yaml
+  - csi-driver-nfs.yaml
   - ../base/sealed-secrets.yaml
