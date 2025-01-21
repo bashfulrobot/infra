@@ -6,5 +6,4 @@ metadata:
 resources:
   - ../base/cilium.yaml
   - cilium.yaml
-  - nfs-subdir-ext-prov.yaml
   - ../base/sealed-secrets.yaml

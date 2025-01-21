@@ -71,10 +71,12 @@ chart-versions:
     @helm search repo cilium/cilium --versions | head -5
     @helm search repo kubernetes-dashboard/kubernetes-dashboard --versions | head -5
     @helm search repo nfs-subdir-external-provisioner/nfs-subdir-external-provisioner --versions | head -5
+    @helm search repo csi-driver-nfs/csi-driver-nfs --versions | head -5
 # Add Helm repos to support version checks
 charts-add:
     @helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
     @helm repo add sysdig https:charts.sysdig.com/
     @helm repo add cilium https://helm.cilium.io/
     @helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+    @helm repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
     @helm repo update
