@@ -37,4 +37,4 @@ spec:
   values:
     nfs:
       server: 192.168.168.1
-      path: /exported/spitfire
+      path: /exports/spitfire
