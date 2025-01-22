@@ -46,7 +46,7 @@ provisioner: nfs.csi.k8s.io
 parameters:
   server: 192.168.168.1
   share: /exports/spitfire/
-  subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}/${pv.metadata.name}/${pod.metadata.name}
+  subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}/${pv.metadata.name}
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
@@ -65,7 +65,7 @@ provisioner: nfs.csi.k8s.io
 parameters:
   server: 192.168.168.1
   share: /exports/spitfire/
-  subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}/${pv.metadata.name}/${pod.metadata.name}
+  subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}/${pv.metadata.name}
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
 mountOptions:
