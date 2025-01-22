@@ -1,18 +1,18 @@
 # References:
 #  - https://rudimartinsen.com/2024/01/09/nfs-csi-driver-kubernetes/
 # - https://jbn1233.medium.com/kubernetes-csi-csi-driver-nfs-with-subdir-132d3e04e424
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: csi-driver-nfs
-  labels:
-    toolkit.fluxcd.io/tenant: cluster-admin
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: csi-driver-nfs
+#   labels:
+#     toolkit.fluxcd.io/tenant: cluster-admin
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: csi-driver-nfs-helmrepo
-  namespace: csi-driver-nfs
+  namespace: kube-system
 spec:
   interval: 1h0m0s
   url: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
@@ -21,7 +21,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: csi-driver-nfs
-  namespace: csi-driver-nfs
+  namespace: kube-system
 spec:
   chart:
     spec:
@@ -32,7 +32,7 @@ spec:
       version: ">=4.9.0"
   interval: 1h0m0s
   releaseName: csi-driver-nfs
-  targetNamespace: csi-driver-nfs
+  targetNamespace: kube-system
   install:
     crds: Create
   upgrade:
