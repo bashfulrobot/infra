@@ -47,6 +47,7 @@ parameters:
   server: 192.168.168.1
   share: /exports/spitfire/
   subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}/${pv.metadata.name}
+  mountPermissions: "0755"
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
@@ -66,7 +67,7 @@ parameters:
   server: 192.168.168.1
   share: /exports/spitfire/
   subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}/${pv.metadata.name}
-  mountPermissions: "1000"
+  mountPermissions: "0755"
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
 mountOptions:
