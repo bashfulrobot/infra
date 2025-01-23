@@ -47,7 +47,7 @@ parameters:
   server: 192.168.168.1
   share: /exports/spitfire/
   # subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}/${pv.metadata.name}
-  subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}/${pv.metadata.name}/${pod.metadata.name}/${container.name}
+  subDir: ${pvc.metadata.namespace}/${pvc.metadata.name}/${pv.metadata.name}
   mountPermissions: "0755"
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
