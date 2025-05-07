@@ -7,7 +7,8 @@
         ],
         "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.4-standalone-strict/all.json": [
             "file:///home/dustin/dev/lab/infra/clusters/enterprise/flux-system/kustomization.yaml"
-        ]
+        ],
+        "https://raw.githubusercontent.com/socialgouv/kontinuous/v1/docs/values.schema.json": "file:///home/dustin/dev/lab/infra/helpers/values/replicant-sysdig-shield-values.yaml"
     },
     "json.schemas": [
         {
