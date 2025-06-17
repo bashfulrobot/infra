@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - gotk-components.yaml
   - gotk-sync.yaml
-  - ../../../apps/base/podinfo/flux/podinfo.yaml
+  #- ../../../apps/base/podinfo/flux/podinfo.yaml
