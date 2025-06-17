@@ -5,4 +5,4 @@ metadata:
   namespace: podinfo
 resources:
   # - sysdig-agent.yaml
-  - sysdig-shield.yaml
+ # - sysdig-shield.yaml
