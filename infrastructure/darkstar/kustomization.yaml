@@ -4,6 +4,6 @@ metadata:
   name: infrastructure-darkstar
   namespace: flux-system
 resources:
-- ../base/cilium.yaml
-- cilium.yaml
+# - ../base/cilium.yaml
+# - cilium.yaml
 - ../base/sealed-secrets.yaml
